@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-two =1
-but= 2
+two = 1
+but = 2
+print(two)
