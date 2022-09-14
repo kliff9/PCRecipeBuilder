@@ -1,0 +1,19 @@
+#Docker Syntax Version
+version: "3.9"
+# Services
+# context = use current directly,
+# volume - updates on local to update on docker,
+# command - command to run service
+# args- if running build argument where dev = true
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"

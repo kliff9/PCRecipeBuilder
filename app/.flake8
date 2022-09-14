@@ -1,0 +1,8 @@
+[flake8]
+exclude =
+  migrations,
+  __pycache__,
+  manage.py,
+  settings.py
+  ; exclude files from linting
+  ; A Lint or a Linter is a program that supports linting (verifying code quality). Linting is the process of checking the source code for Programmatic as well as Stylistic errors.
