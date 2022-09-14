@@ -21,3 +21,4 @@ urlpatterns = [
 ]
 
 two =1
+but= 2
