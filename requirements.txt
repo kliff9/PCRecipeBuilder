@@ -1,2 +1,4 @@
 Django>=3.2.4,<3.3
 djangorestframework>=3.12.4,<3.13
+# Psycopg is the most popular PostgreSQL database adapter for the Python programming language.
+psycopg2>=2.8.6,<2.9

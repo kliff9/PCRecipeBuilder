@@ -23,11 +23,16 @@ EXPOSE 8000
 ARG DEV=false 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
+    # we install deps for progressql as temp to be removable to keep app lightweight
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
     /py/bin/pip install -r /tmp/requirements.txt && \
+    build-base postgresql-dev musl-dev && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
+    apk del .tmp-build-deps && \
     adduser \
         --disabled-password \
         --no-create-home \
