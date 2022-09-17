@@ -21,6 +21,7 @@ class CommandTests(SimpleTestCase):
     def test_wait_for_db_ready(self, patched_check):
         """Test waiting for database if database ready."""
         patched_check.return_value = True  # when called return True Value
+<<<<<<< HEAD
         print(patched_check)
         call_command('wait_for_db')
         #  check if called with databases=['default']
@@ -28,11 +29,19 @@ class CommandTests(SimpleTestCase):
         patched_check.assert_called_once_with(databases=['default'])
 
     # database test when it fails 6 times?
+=======
+
+        call_command('wait_for_db')
+        #  check if called with databases=['default']
+        patched_check.assert_called_once_with(databases=['default'])
+
+>>>>>>> 18fcc729f227163d4500d5c84e415abb5aa2ec22
     @patch('time.sleep')
     def test_wait_for_db_delay(self, patched_sleep, patched_check):
         """Test waiting for database when getting OperationalError."""
         # first 2 times call mock method, the next 3 times raise Oerror
         patched_check.side_effect = [Psycopg2OpError] * 2 + \
+<<<<<<< HEAD
             [OperationalError] * 1 + [True]
 
         # for x in patched_check.side_effect:
@@ -42,4 +51,11 @@ class CommandTests(SimpleTestCase):
 
         self.assertEqual(patched_check.call_count, 4)
         # .assert_called_with() is used to check if the method is called with a particular set of arguments.
+=======
+            [OperationalError] * 3 + [True]
+
+        call_command('wait_for_db')
+
+        self.assertEqual(patched_check.call_count, 6)
+>>>>>>> 18fcc729f227163d4500d5c84e415abb5aa2ec22
         patched_check.assert_called_with(databases=['default'])
