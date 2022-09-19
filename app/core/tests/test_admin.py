@@ -38,7 +38,7 @@ class AdminSiteTests(TestCase):
         """Test the edit user page works."""
         url = reverse('admin:core_user_change', args=[self.user.id])
         res = self.client.get(url)
-        print(f'User List Test has Started WITH {res}')
+        print(f'User Edit Page Test has Started WITH {res}')
 
         self.assertEqual(res.status_code, 200)
 
@@ -48,3 +48,4 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
+        print(f'User Create Page Test has Started WITH {res}')
