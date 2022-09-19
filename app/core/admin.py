@@ -11,12 +11,13 @@ from core import models
 
 # FOR CHANGE(Edit) to work we need to change the default settins from  django.contrib.auth.admin the USERAdmin Class
 
+
 class UserAdmin(BaseUserAdmin):
-    """Define the admin pages for users."""
-    ordering = ['id'] #also because we got rid of username?
+    """  Define the admin pages for users."""
+    ordering = ['id']  # also because we got rid of username?
     list_display = ['email', 'name', 'bio']
-    # (None) = The Title Section like how Personl info is the Title
-    # Customiszed fields set and customized field set that we created, and overridde the default one so no missing uername error
+# (None) = The Title Section like how Personl info is the Title
+# Customiszed field set and customized field set that we created, and overridde the default one
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {'fields': ('name', 'bio',)}),
@@ -33,5 +34,21 @@ class UserAdmin(BaseUserAdmin):
         (_('Important dates'), {'fields': ('last_login',)}),
     )
     readonly_fields = ['last_login']
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email',
+                'password1',
+                'password2',
+                'name',
+                'bio',
+                'is_active',
+                'is_staff',
+                'is_superuser',
+            ),
+        }),
+    )
 
-admin.site.register(models.User, UserAdmin) # user UserADmin class instead of Model manager default?
+
+admin.site.register(models.User, UserAdmin)  # user UserADmin class instead of Model manager default?

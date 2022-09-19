@@ -1,8 +1,7 @@
 """
 Tests for models.
 """
-from genericpath import samefile
-from random import sample
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
@@ -43,19 +42,21 @@ class ModelTests(TestCase):
             self.assertEqual(user.email, expected)
         user = get_user_model().objects.create_user(single_emails[0], 'sample123')
 
-        print(f'User Model normalized Test has been completed RESULT: {user.email}' )
+        print(f'User Model normalized Test has been completed RESULT: {user.email}')
 
     def test_new_user_without_email_raises_error(self):
         """Test that creating a user without an email raises a ValueError."""
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user('', 'test123')
+
     def test_create_superuser(self):
         """Test creating a superuser."""
         user = get_user_model().objects.create_superuser(
             'test@example.com',
             'test123',
         )
-        print(f'User Model superuser Test has Started')
+
+        print('User Model superuser Test has Started')
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)

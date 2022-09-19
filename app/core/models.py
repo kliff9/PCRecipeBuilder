@@ -8,7 +8,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 
-#
+
 class UserManager(BaseUserManager):
     """Manager for users."""
     #
@@ -17,9 +17,9 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError('User must have an email address.')
         # extra_fileds is extra fields
-        user = self.model(email=self.normalize_email(email), **extra_fields) # same as New User()
-        user.set_password(password) #set encrpyed password
-        user.save(using=self._db) # incase you have manny databases, Best practice
+        user = self.model(email=self.normalize_email(email), **extra_fields)  # same as New User()
+        user.set_password(password)  # set encrpyed password
+        user.save(using=self._db)  # incase you have manny databases, Best practice
 
         return user
 
@@ -35,6 +35,7 @@ class UserManager(BaseUserManager):
 # abstract base User -> functionality of auth system, and permissions for perrmissions and fields
 # hook in the New Manager to our Model
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system."""
     email = models.EmailField(max_length=255, unique=True)
@@ -43,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    ## define the user manager class for User
+    # define the user manager class for User
     objects = UserManager()
     # field for auth and replace with username
     USERNAME_FIELD = 'email'

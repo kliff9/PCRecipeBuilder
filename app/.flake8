@@ -4,5 +4,7 @@ exclude =
   __pycache__,
   manage.py,
   settings.py
+max-line-length = 120
+
   ; exclude files from linting
   ; A Lint or a Linter is a program that supports linting (verifying code quality). Linting is the process of checking the source code for Programmatic as well as Stylistic errors.
