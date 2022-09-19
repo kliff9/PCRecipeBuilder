@@ -5,6 +5,7 @@ version: "3.9"
 # volume - updates on local to update on docker,
 # command - command to run service
 # args- if running build argument where dev = true
+# command #2 Runs in Steps when ever Call "passes"?
 services:
   app:
     build:
@@ -40,3 +41,4 @@ services:
 
 volumes:
   dev-db-data:
+# PS docker volume rm pcrecipebuilder_dev-db-data to clear database and start a new one?
