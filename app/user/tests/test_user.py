@@ -73,7 +73,6 @@ class PublicUserApiTests(TestCase):
         self.assertFalse(user_exists)
         print(f'Password too short  WITH Cred: {res}')
 
-
     def test_create_token_for_user(self):
         """Test generates token for valid credentials."""
         user_details = {

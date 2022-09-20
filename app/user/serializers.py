@@ -33,7 +33,7 @@ class AuthTokenSerializer(serializers.Serializer):
         trim_whitespace=False,  # prevent trim whitespace(take off)
     )
 
-    def validate(self, attributes): # make sure data is corrent
+    def validate(self, attributes):  # make sure data is corrent
         """Validate and authenticate the user."""
         email = attributes.get('email')
         password = attributes.get('password')
