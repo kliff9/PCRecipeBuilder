@@ -1,7 +1,7 @@
 """
 Views for the user API.
 """
-from rest_framework import generics
+from rest_framework import generics, authentication, permissions
 
 # Create your views here.
 from user.serializers import (
@@ -21,3 +21,14 @@ class CreateTokenView(ObtainAuthToken):  # use customize serializer (to use emai
     """Create a new auth token for user."""
     serializer_class = AuthTokenSerializer
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES  # uses default rendering?
+
+
+class ManageUserView(generics.RetrieveUpdateAPIView):  # retrieve and update (patch)
+    """Manage the authenticated user."""
+    serializer_class = UserSerializer
+    authentication_classes = [authentication.TokenAuthentication]  # if verifed
+    permission_classes = [permissions.IsAuthenticated]  # if allowed, must be authenticates
+
+    def get_object(self):  # override
+        """Retrieve and return the authenticated user."""
+        return self.request.user  # Http request will call this? return user
