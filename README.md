@@ -1,3 +1,3 @@
 # PCRecipeBuilder
 
-docker-compose up -> start dev server and apply any migrations
+This Project is a Backend API that is currently In development 
